@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+{% block content %}
+
+<h1>OWNERS</h1>
+<div class="center-column">
+    <div>
+        <a href=" {% url 'vehicle:create_owner'  %} " class="list-group-item list-group-item-action">Create</a>
+    </div>
+    {% for owner in Owners %}
+    <div>
+            <a href=" {% url 'vehicle:owner_vehicle' owner.id  %} " class="list-group-item list-group-item-action">
+                <h5>{{owner}}</h5></a>
+    </div> 
+    {% endfor %}
+    
+</div>
+
+
+
+<style>
+    .center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+</style>
+
+{% endblock %}
