@@ -10,23 +10,30 @@
         <div>
             <a href=" {% url 'vehicle:create_vehicle'  %} " class="list-group-item list-group-item-action">input vehicle details</a>
         </div>
-        {% for vehicle in Vehicles %}
-            {% comment %} {% if vehicle in owner %} {% endcomment %}
-                <ul>
-                    <li><strong>{{vehicle.id}}</strong></li>
-                    <li>{{vehicle.username}}</li>
-                    <li>{{vehicle.make}}</li>
-                    <li>{{vehicle.model}}</li>
-                    <li>{{vehicle.license}}</li>
-                    <li>{{vehicle.color}}</li>
-                    <li>{{vehicle.engine}}</li>
-                </ul>
-            {% comment %} {% endif%} {% endcomment %}
+        {% for owner in Owners %}
+            <h4>{{owner.username}}'s Cars</h4>
+            {% for vehicle in owner.vehicle_set.all %}
+                {% if owner.username == vehicle.username %}
+                
+                    <ul>
+                        <li><strong>{{vehicle.id}}</strong></li>
+                        <li>{{vehicle.username}}</li>
+                        <li>{{vehicle.make}}</li>
+                        <li>{{vehicle.model}}</li>
+                        <li>{{vehicle.license}}</li>
+                        <li>{{vehicle.color}}</li>
+                        <li>{{vehicle.engine}}</li>
+                    </ul>
+                 {% else %}
+                    <h4>None Available</h4>
+                {% endif%} 
+        
+                
+            {% endfor %}
         {% empty %}
-            <ul>
-                <li><strong>No Vehicles</strong></li>
-            </ul>
-            
+        <ul>
+            <li><strong>No Vehicles</strong></li>
+        </ul>
         {% endfor %}
         {% comment %} <h1>{{ owner.username }}</h1>
         

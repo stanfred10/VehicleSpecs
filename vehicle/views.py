@@ -34,7 +34,7 @@ def createVehicle(request):
         form = VehicleForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/')
+        return redirect('owner_vehicle/<str:pk>')
     
     context = {'Vehicles': Vehicles, 'form': form}
     return render(request, 'vehicle/create_vehicle.html', context)
